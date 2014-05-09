@@ -1,0 +1,19 @@
+{
+    "name": "wmc/multipress",
+    "description": "A PHP client for Multi-Press SOAP webservice API",
+    "authors": [
+        {
+            "name": "G. Arends",
+            "email": "gd@wmc.io"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "WMC\\MultiPress\\": "src"
+        }
+    }
+}
