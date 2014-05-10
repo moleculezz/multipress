@@ -7,9 +7,16 @@ abstract class AbstractType
 
     public $xml = null;
 
+    protected $data = [];
+
     public function __construct()
     {
         $this->xml = new \SimpleXMLElement(self::ROOT);
+    }
+
+    public function addData($data)
+    {
+        $this->data = array_merge($this->data, $data);
     }
 
     public function toXML($node = null, $data = null)
@@ -22,10 +29,7 @@ abstract class AbstractType
             }
         }
         if (is_null($data)) {
-            $data = get_object_vars($this);
-            // TODO: Change class property setup to avoid having to unset other properties.
-            unset($data['xml']);
-            unset($data['rootNamespace']);
+            $data = $this->data;
         }
 
         foreach ($data as $property => $value) {

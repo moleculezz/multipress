@@ -8,7 +8,7 @@ class OrderType extends AbstractType
 
     protected $rootNamespace = 'INTERNET_BUFFER';
 
-    public $type = 2;
+    protected $data = ['type' => 2];
 
     /**
      * @example  $data = [
@@ -26,21 +26,17 @@ class OrderType extends AbstractType
 
     public function addData($data)
     {
-        foreach ($data as $key => $value) {
-            $this->{$key} = $value;
-        }
-
-        $this->setDelivery();
+        parent::addData($data);
+        $this->setDeliveryNode();
     }
 
-    private function setDelivery()
+    private function setDeliveryNode()
     {
-        $this->delivery = new \stdClass();
         foreach (self::$delivery_keys as $property) {
-            if (!isset($this->{$property})) {
-                throw new \InvalidArgumentException('Object property is not set');
+            if (!isset($this->data[$property])) {
+                throw new \InvalidArgumentException('Property is not set');
             }
-            $this->delivery->{$property} = $this->{$property};
+            $this->data['delivery'][$property] = $this->data[$property];
         }
     }
 
