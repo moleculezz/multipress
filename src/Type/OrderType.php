@@ -4,6 +4,8 @@ namespace WMC\MultiPress\Type;
 class OrderType extends AbstractType
 {
 
+    const DATE_FORMAT = 'd-m-Y';
+
     private static $delivery_keys = ['company', 'address', 'address_number', 'zipcode', 'city', 'country', 'contact_name', 'email', 'phone'];
 
     protected $rootNamespace = 'INTERNET_BUFFER';
@@ -40,20 +42,12 @@ class OrderType extends AbstractType
         }
     }
 
-    public function addDeliveryDate($dateString)
+    public function addDeliveryDate($date)
     {
-        //$this->delivery_date = 
-    }
-
-    /**
-     * 
-     * @example $data = [ 'text_01' => '', 'text_02' => '', .... ]
-     */
-    public function setChecklist($data)
-    {
-        $this->checklist = new \stdClass();
-        foreach ($data as $property => $value) {
-            $this->checklist->{$property} = $value;
+        if ($date instanceof DateTime) {
+            $this->data['delivery_date'] = $date->format(self::DATE_FORMAT);
+        } else {
+            $this->data['delivery_date'] = date(self::DATE_FORMAT, $date);
         }
     }
 }
