@@ -12,14 +12,6 @@ class OrderType extends AbstractType
 
     protected $data = ['type' => 2];
 
-    /**
-     * @example  $data = [
-     *                      'company'  => '', 'contact_name'     => '', 'email'             => '', 'phone'                 => '',
-     *                      'address'    => '', 'address_number' => '', 'zipcode'          => '', 'city'                     => '', 'country' => '', 'country_code' => '',
-     *                      'reference' => '', 'remark'                => '', 'product_type' => '', 'product_number' => '',
-     *                   ];
-     **/
-
     public function __construct()
     {
         parent::__construct();
