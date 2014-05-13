@@ -92,6 +92,22 @@ class Order extends AbstractInternetBuffer
     {
         return $this->addElem('PRODUCT_NUMBER', $value);
     }
+    
+    /**
+     * Sets the delivery date.
+     * @param DateTime|string $date    The string should be a unix timestamp.
+     * @param string $format
+     * 
+     * @return \WMC\MultiPress\XML\AbstractXML
+     */
+    public function setDeliveryDate($date, $format = 'd-m-Y')
+    {
+        if ($date instanceof DateTime) {
+            return $this->addElem('DELIVERY_DATE', $date->format($format));
+        } else {
+            return $this->addElem('DELIVERY_DATE', date($format, $date));
+        }
+    }
 
     public function setChecklistID($value)
     {
