@@ -10,7 +10,7 @@ class Client extends \SoapClient
                 throw new \InvalidArgumentException("You must specify 'login' and 'password' to authenticate.");
             }
 
-            if(empty($value)) {
+            if (empty($value)) {
                 throw new \InvalidArgumentException('Argument value is empty.');
             }
         }
@@ -19,7 +19,7 @@ class Client extends \SoapClient
         curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
         $response = curl_exec($handle);
         $http_code = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-        if($http_code != 200) {
+        if ($http_code != 200) {
             throw new \Exception("Could not make a connection to the WSDL, service is down.");
         }
         curl_close($handle);
@@ -29,15 +29,16 @@ class Client extends \SoapClient
         } catch (\SoapFault $e) {
             throw $e;
         }
-        
+
     }
 
     public function request($function, $xml = null)
     {
         try {
             $response = $this->__soapCall('SOAP_LINK', [$function, $xml]);
+
             return simplexml_load_string($response['output']);
-        } catch(\SoapFault $e) {
+        } catch (\SoapFault $e) {
             throw $e;
         }
     }

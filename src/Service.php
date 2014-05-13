@@ -1,8 +1,6 @@
 <?php
 namespace WMC\MultiPress;
 
-use WMC\MultiPress\Client;
-
 class Service
 {
     private $connection;
@@ -35,10 +33,11 @@ class Service
     public function getJobNumber(\WMC\MultiPress\XML\InternetBufferStatus $request)
     {
         $response = $this->getInternetBufferStatus($request);
-        $processed = (string)$response->INTERNET_BUFFER->PROCESSED;
+        $processed = (string) $response->INTERNET_BUFFER->PROCESSED;
         if ($processed == 'JA') {
-          return (string)$response->INTERNET_BUFFER->JOB_NUMBER;
+          return (string) $response->INTERNET_BUFFER->JOB_NUMBER;
         }
+
         return false;
     }
 
