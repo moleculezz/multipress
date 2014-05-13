@@ -1,6 +1,7 @@
 {
     "name": "wmc/multipress",
     "description": "A PHP client for Multi-Press SOAP webservice API",
+    "license": "MIT",
     "authors": [
         {
             "name": "G. Arends",
