@@ -1,6 +1,10 @@
 <?php
 namespace WMC\MultiPress;
 
+use WMC\MultiPress\XML\Order;
+use WMC\MultiPress\XML\OrderDetails;
+use WMC\MultiPress\XML\InternetBufferStatus;
+
 class Service
 {
     private $connection;
@@ -15,22 +19,22 @@ class Service
         return $this->connection->request(0);
     }
 
-    public function addOrder(XML\Order $request)
+    public function addOrder(Order $request)
     {
         return $this->connection->request(4, $request->xml->asXML());
     }
 
-    public function getOrderDetails(XML\OrderDetails $request)
+    public function getOrderDetails(OrderDetails $request)
     {
         return $this->connection->request(11, $request->xml->asXML());
     }
 
-    public function getInternetBufferStatus(XML\InternetBufferStatus $request)
+    public function getInternetBufferStatus(InternetBufferStatus $request)
     {
         return $this->connection->request(10, $request->xml->asXML());
     }
 
-    public function getJobNumber(XML\InternetBufferStatus $request)
+    public function getJobNumber(InternetBufferStatus $request)
     {
         $response = $this->getInternetBufferStatus($request);
         $processed = (string) $response->INTERNET_BUFFER->PROCESSED;
