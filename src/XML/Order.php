@@ -9,29 +9,115 @@ class Order extends AbstractInternetBuffer
     public function __construct()
     {
         parent::__construct();
-        $this->delivery = $this->parent->appendChild(new \DOMElement('DELIVERY'));
+        $this->delivery = $this->parent->addChild('DELIVERY');
+        $this->setType();
+    }
+
+    public function setType($value = 2)
+    {
+        return $this->addElem('TYPE', $value);
     }
 
     public function setRelation($value)
     {
-        return $this->createElem('RELATION_NUMBER', $value);
+        return $this->addElem('RELATION_NUMBER', $value);
     }
 
     public function setCompany($value)
     {
-        $this->setDelivery('COMPANY', $value);
-        return $this->createElem('COMPANY', $value);
+        return $this->setDelivery('COMPANY', $value);
     }
 
-    private function createElem($node, $value)
+    public function setContactName($value)
     {
-        $el = $this->createElement($node, $value);
-        $this->parent->appendChild($el);
-        return $this;
+        return $this->setDelivery('CONTACT_NAME', $value);
     }
 
-    private function setDelivery($attribute, $value)
+    public function setEmail($value)
     {
-        $this->delivery->setAttribute($attribute, $value);
+        return $this->setDelivery('EMAIL', $value);
+    }
+
+    public function setPhone($value)
+    {
+        return $this->setDelivery('PHONE', $value);
+    }
+
+    public function setAddress($value)
+    {
+        return $this->setDelivery('ADDRESS', $value);
+    }
+
+    public function setAddressNumber($value)
+    {
+        return $this->setDelivery('ADDRESS_NUMBER', $value);
+    }
+
+    public function setZipCode($value)
+    {
+        return $this->setDelivery('ZIPCODE', $value);
+    }
+
+    public function setCity($value)
+    {
+        return $this->setDelivery('CITY', $value);
+    }
+
+    public function setCountry($value)
+    {
+        return $this->setDelivery('COUNTRY', $value);
+    }
+
+    public function setCountryCode($value)
+    {
+        return $this->addElem('COUNTRY_CODE', $value);
+    }
+
+    public function setReference($value)
+    {
+        return $this->addElem('REFERENCE', $value);
+    }
+
+    public function setRemark($value)
+    {
+        return $this->addElem('REMARK', $value);
+    }
+
+    public function setProductType($value)
+    {
+        return $this->addElem('PRODUCT_TYPE', $value);
+    }
+
+    public function setProductNumber($value)
+    {
+        return $this->addElem('PRODUCT_NUMBER', $value);
+    }
+
+    public function setChecklistID($value)
+    {
+        return $this->addElem('CHECKLIST', $value);
+    }
+
+    public function setChecklist($items)
+    {
+        foreach ($items as $node => $value) {
+            return $this->addElem($node, $value);
+        }
+    }
+
+    public function setPrintRun($value)
+    {
+        return $this->addElem('RUN_01', $value);
+    }
+
+    private function addDeliveryAttrib($attribute, $value)
+    {
+        $this->delivery->addAttribute($attribute, $value);
+    }
+
+    private function setDelivery($name, $value)
+    {
+        $this->addDeliveryAttrib($name, $value);
+        return $this->addElem($name, $value);
     }
 }
