@@ -14,13 +14,13 @@ abstract class AbstractXML
 
     protected function addElem($node, $value)
     {
-        $a = (array)$this->parent->{$node};
+        $a = (array) $this->parent->{$node};
         if (empty($a)) {
             $this->parent->addChild($node, $value);
         } else {
             $this->parent->{$node} = $value;
         }
-        
+
         return $this;
     }
 }

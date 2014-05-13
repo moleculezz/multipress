@@ -92,12 +92,12 @@ class Order extends AbstractInternetBuffer
     {
         return $this->addElem('PRODUCT_NUMBER', $value);
     }
-    
+
     /**
      * Sets the delivery date.
-     * @param DateTime|string $date    The string should be a unix timestamp.
-     * @param string $format
-     * 
+     * @param DateTime|string $date   The string should be a unix timestamp.
+     * @param string          $format
+     *
      * @return \WMC\MultiPress\XML\AbstractXML
      */
     public function setDeliveryDate($date, $format = 'd-m-Y')
@@ -134,6 +134,7 @@ class Order extends AbstractInternetBuffer
     private function setDelivery($name, $value)
     {
         $this->addDeliveryAttrib($name, $value);
+
         return $this->addElem($name, $value);
     }
 }
