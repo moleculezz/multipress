@@ -41,4 +41,9 @@ class Service
         }
         return false;
     }
+
+    public function getOrderStatusDetails()
+    {
+        return $this->connection->request(23);
+    }
 }
