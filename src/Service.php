@@ -5,7 +5,7 @@ class Service
 {
     private $connection;
 
-    public function __construct(Client $connection)
+    public function __construct(ClientInterface $connection)
     {
         $this->connection = $connection;
     }

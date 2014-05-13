@@ -1,7 +1,7 @@
 <?php
 namespace WMC\MultiPress;
 
-class Client extends \SoapClient
+class Client extends \SoapClient implements ClientInterface
 {
     public function __construct($wsdl, $options)
     {
@@ -32,10 +32,10 @@ class Client extends \SoapClient
 
     }
 
-    public function request($function, $xml = null)
+    public function request($method, $xml = null)
     {
         try {
-            $response = $this->__soapCall('SOAP_LINK', [$function, $xml]);
+            $response = $this->__soapCall('SOAP_LINK', [$method, $xml]);
 
             return simplexml_load_string($response['output']);
         } catch (\SoapFault $e) {
