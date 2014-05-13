@@ -15,22 +15,22 @@ class Service
         return $this->connection->request(0);
     }
 
-    public function addOrder(\WMC\MultiPress\XML\Order $request)
+    public function addOrder(XML\Order $request)
     {
         return $this->connection->request(4, $request->xml->asXML());
     }
 
-    public function getOrderDetails(\WMC\MultiPress\XML\OrderDetails $request)
+    public function getOrderDetails(XML\OrderDetails $request)
     {
         return $this->connection->request(11, $request->xml->asXML());
     }
 
-    public function getInternetBufferStatus(\WMC\MultiPress\XML\InternetBufferStatus $request)
+    public function getInternetBufferStatus(XML\InternetBufferStatus $request)
     {
         return $this->connection->request(10, $request->xml->asXML());
     }
 
-    public function getJobNumber(\WMC\MultiPress\XML\InternetBufferStatus $request)
+    public function getJobNumber(XML\InternetBufferStatus $request)
     {
         $response = $this->getInternetBufferStatus($request);
         $processed = (string) $response->INTERNET_BUFFER->PROCESSED;
