@@ -117,8 +117,10 @@ class Order extends AbstractInternetBuffer
     public function setChecklist($items)
     {
         foreach ($items as $node => $value) {
-            return $this->addElem($node, $value);
+            $this->addElem($node, $value);
         }
+
+        return $this;
     }
 
     public function setPrintRun($value)
