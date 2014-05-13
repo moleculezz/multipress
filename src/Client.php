@@ -19,10 +19,10 @@ class Client extends \SoapClient implements ClientInterface
         curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
         $response = curl_exec($handle);
         $http_code = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+        curl_close($handle);
         if ($http_code != 200) {
             throw new \Exception("Could not make a connection to the WSDL, service is down.");
         }
-        curl_close($handle);
 
         try {
             parent::__construct($wsdl, $options);
@@ -36,7 +36,6 @@ class Client extends \SoapClient implements ClientInterface
     {
         try {
             $response = $this->__soapCall('SOAP_LINK', [$method, $xml]);
-
             return simplexml_load_string($response['output']);
         } catch (\SoapFault $e) {
             throw $e;
