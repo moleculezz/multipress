@@ -102,7 +102,7 @@ class Order extends AbstractInternetBuffer
      */
     public function setDeliveryDate($date, $format = 'd-m-Y')
     {
-        if ($date instanceof DateTime) {
+        if ($date instanceof \DateTime) {
             return $this->addElem('DELIVERY_DATE', $date->format($format));
         } else {
             return $this->addElem('DELIVERY_DATE', date($format, $date));
