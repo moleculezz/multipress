@@ -6,7 +6,7 @@ class Client extends \SoapClient implements ClientInterface
     public function __construct($wsdl, $options)
     {
         foreach ($options as $key => $value) {
-            if (!in_array($key, array('login', 'password'))) {
+            if (!in_array($key, ['login', 'password'])) {
                 throw new \InvalidArgumentException("You must specify 'login' and 'password' to authenticate.");
             }
 
