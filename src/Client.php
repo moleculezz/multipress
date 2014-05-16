@@ -36,7 +36,6 @@ class Client extends \SoapClient implements ClientInterface
     {
         try {
             $response = $this->__soapCall('SOAP_LINK', [$method, $xml]);
-
             return simplexml_load_string($response['output']);
         } catch (\SoapFault $e) {
             throw $e;
