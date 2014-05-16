@@ -1,8 +1,6 @@
 <?php namespace WMC\MultiPress;
 
 use Illuminate\Support\ServiceProvider;
-use WMC\MultiPress\Client;
-use WMC\MultiPress\Service;
 
 class MultiPressServiceProvider extends ServiceProvider
 {
@@ -30,8 +28,9 @@ class MultiPressServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['multipress'] = $this->app->share(function($app) {
+        $this->app['multipress'] = $this->app->share(function ($app) {
             $conn = new Client($app['config']['wmc/multipress::wsdl'], $app['config']['wmc/multipress::options']);
+
             return new Service($conn);
         });
     }
