@@ -31,7 +31,7 @@ class MultiPressServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app['multipress'] = $this->app->share(function($app) {
-            $client = new Client($app['config']['wmc/multipress::wsdl'], $app['config']['wmc/multipress::options']);
+            $conn = new Client($app['config']['wmc/multipress::wsdl'], $app['config']['wmc/multipress::options']);
             return new Service($conn);
         });
     }
