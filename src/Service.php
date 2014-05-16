@@ -4,6 +4,7 @@ namespace WMC\MultiPress;
 use WMC\MultiPress\XML\Order;
 use WMC\MultiPress\XML\OrderDetails;
 use WMC\MultiPress\XML\InternetBufferStatus;
+use WMC\MultiPress\XML\OrderStatus;
 
 class Service
 {
@@ -48,5 +49,10 @@ class Service
     public function getOrderStatusDetails()
     {
         return $this->connection->request(23);
+    }
+
+    public function setOrderStatus(OrderStatus $request)
+    {
+        return $this->connection->request(25, $request->xml->asXML());
     }
 }
