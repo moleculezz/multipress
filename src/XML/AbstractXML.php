@@ -16,7 +16,7 @@ abstract class AbstractXML
     {
         $a = (array) $this->parent->{$node};
         if (empty($a)) {
-            $this->parent->addChild($node, htmlentities($value));
+            $this->parent->addChild($node, htmlentities($value, ENT_XML1));
         } else {
             $this->parent->{$node} = $value;
         }
