@@ -14,12 +14,7 @@ abstract class AbstractXML
 
     protected function addElem($node, $value)
     {
-        $a = (array) $this->parent->{$node};
-        if (empty($a)) {
-            $this->parent->addChild($node, htmlentities($value, ENT_XML1));
-        } else {
-            $this->parent->{$node} = $value;
-        }
+        $this->parent->{$node} = $value;
 
         return $this;
     }
